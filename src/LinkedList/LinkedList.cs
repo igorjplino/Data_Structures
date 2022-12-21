@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
 
 namespace LinkedList
 {
-    internal class LinkedList<T>
+    public class LinkedList<T>
     {
         private Node<T>? _head;
         private long _length;
@@ -74,6 +75,40 @@ namespace LinkedList
             pointer.Next = newValue;
 
             _length++;
+        }
+
+        public void Remove(T value)
+        {
+            if (_head is null)
+                throw new Exception(string.Format("{0} is not in the list", value));
+
+            if (_head.Data!.Equals(value))
+            { 
+                _head = _head.Next;
+                _length--;
+                
+                return;
+            }
+
+            var ancestor = _head;
+            var pointer = _head.Next;
+
+            while (pointer is not null)
+            {
+                if (pointer.Data!.Equals(value))
+                {
+                    ancestor!.Next = pointer.Next;
+                    pointer = null;
+
+                    _length--;
+                    return;
+                }
+
+                ancestor = pointer;
+                pointer = pointer.Next;
+            }
+
+            throw new Exception(string.Format("{0} is not in the list", value));
         }
 
         public override string ToString()
