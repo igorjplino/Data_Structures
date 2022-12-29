@@ -10,8 +10,8 @@
         }
 
         [Theory]
-        [MemberData(nameof(SplitCountData))]
-        public void WhenAddNewValues_ShouldHaveSameAmount(IEnumerable<int> values)
+        [MemberData(nameof(NewValues))]
+        public void WhenCreateNewList_ShouldHaveSameAmount(IEnumerable<int> values)
         {
             foreach (var value in values)
             {
@@ -21,7 +21,7 @@
             Assert.True(_linkedList.Length == values.Count());
         }
 
-        public static IEnumerable<object[]> SplitCountData =>
+        public static IEnumerable<object[]> NewValues =>
             new List<object[]>
             {
                 new object[] { Enumerable.Range(1, 5) },
