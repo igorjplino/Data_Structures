@@ -1,9 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace LinkedList
 {
-    public class LinkedList<T>
+    public class LinkedList<T> : IEnumerable<T>
     {
         private Node<T>? _head;
         private long _length;
@@ -15,7 +16,28 @@ namespace LinkedList
         }
 
         public bool IsEmpty => _head == null;
+
         public long Length => _length;
+
+        public T this[long i] => GetValueByIndex(i);
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (IsEmpty)
+                yield return (T)Enumerable.Empty<T>();
+
+            var pointer = _head;
+
+            while (pointer is not null)
+            {
+                yield return pointer.Data;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public void Append(T value)
         {
@@ -39,7 +61,7 @@ namespace LinkedList
             _length++;
         }
 
-        public long GetIndex(T? value)
+        public long GetIndex(T value)
         {
             var pointer = _head;
 
@@ -111,18 +133,9 @@ namespace LinkedList
             throw new Exception(string.Format("{0} is not in the list", value));
         }
 
-        public override string ToString()
+        public T GetValueByIndex(long index)
         {
-            var sb = new StringBuilder();
-
-            var pointer = _head;
-            while (pointer is not null)
-            {
-                sb.Append(string.Format("{0} -> ", pointer.Data));
-                pointer = pointer.Next;
-            }
-
-            return sb.ToString();
+            return GetNodeByIndex(index).Data;
         }
 
         private Node<T> GetNodeByIndex(long index)
@@ -135,6 +148,20 @@ namespace LinkedList
             }
 
             return pointer ?? throw new IndexOutOfRangeException();
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            var pointer = _head;
+            while (pointer is not null)
+            {
+                sb.Append(string.Format("{0} -> ", pointer.Data));
+                pointer = pointer.Next;
+            }
+
+            return sb.ToString();
         }
     }
 }
