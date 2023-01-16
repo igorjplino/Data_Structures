@@ -25,6 +25,12 @@ namespace Test.Array
             array.Insert(index, newValue);
 
             // Assert
+
+            var expectedArray = new int[] { 1, 2, 3, 99, 4, 5 };
+
+            array.Should()
+                .ContainInOrder(expectedArray)
+                .And.HaveElementAt(index, newValue);
         }
     }
 }
