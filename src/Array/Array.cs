@@ -33,19 +33,6 @@ namespace Array
             _length++;
         }
 
-        private void IncrementArraySize()
-        {
-            _limitSize += 10;
-            var newArray = new T[_limitSize];
-
-            for (long i = 0; i < _array.Length; i++)
-            {
-                newArray[i] = _array[i];
-            }
-
-            _array = newArray;
-        }
-
         public void Insert(long index, T value)
         {
             if (index > (_limitSize - 1))
@@ -91,6 +78,19 @@ namespace Array
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private void IncrementArraySize()
+        {
+            _limitSize += 10;
+            var newArray = new T[_limitSize];
+
+            for (long i = 0; i < _array.Length; i++)
+            {
+                newArray[i] = _array[i];
+            }
+
+            _array = newArray;
         }
     }
 }

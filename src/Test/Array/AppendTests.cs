@@ -2,7 +2,7 @@
 
 namespace Test.Array
 {
-    public class Append
+    public class AppendTests
     {
         [Fact]
         public void WhenAddValues_ShouldHasSameLenght()
