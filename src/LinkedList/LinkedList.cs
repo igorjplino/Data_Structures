@@ -31,6 +31,8 @@ namespace LinkedList
             while (pointer is not null)
             {
                 yield return pointer.Data;
+
+                pointer = pointer.Next;
             }
         }
 
