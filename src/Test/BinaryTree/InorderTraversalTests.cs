@@ -35,6 +35,6 @@ public class InorderTraversalTests
         tree._root = n1;
 
         var expected = new int[] { 7, 4, 2, 5, 1, 3, 6 };
-        var result = tree.InorderTraversal().ToList();
+        var result = tree.InOrderTraversal().ToList();
     }
 }
