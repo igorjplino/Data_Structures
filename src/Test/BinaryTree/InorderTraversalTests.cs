@@ -1,7 +1,7 @@
 ﻿using BinaryTree;
 
 namespace Test.BinaryTree;
-public class SimetricTraversalTests
+public class InorderTraversalTests
 {
     [Fact]
     public void TempTest()
@@ -34,6 +34,7 @@ public class SimetricTraversalTests
         var tree = new Tree<int>();
         tree._root = n1;
 
-        var result = tree.SymmetricTraversal().ToList();
+        var expected = new int[] { 7, 4, 2, 5, 1, 3, 6 };
+        var result = tree.InorderTraversal().ToList();
     }
 }
