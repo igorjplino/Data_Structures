@@ -1,7 +1,7 @@
 ﻿using BinaryTree;
 
 namespace Test.BinaryTree;
-public class InorderTraversalTests
+public class InOrderTraversalTests
 {
     [Fact]
     public void TempTest()
@@ -31,7 +31,7 @@ public class InorderTraversalTests
         n3.Right = n6;
         n4.Left = n7;
 
-        var tree = new Tree<int>();
+        var tree = new BaseBinaryTree<int>();
         tree._root = n1;
 
         var expected = new int[] { 7, 4, 2, 5, 1, 3, 6 };

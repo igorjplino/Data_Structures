@@ -2,7 +2,7 @@
 
 namespace BinaryTree;
 
-public class Tree<T> : IEnumerable<T>
+public class BaseBinaryTree<T> : IEnumerable<T>
 {
     public Node<T> _root;
 
