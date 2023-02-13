@@ -10,19 +10,15 @@ public class BinarySearchTree : BaseBinaryTree<int>
         while (x is not null)
         {
             parent = x;
-            if (x.Data < value)
+            if (value < x.Data)
                 x = x.Left;
             else
                 x = x.Right;
         }
 
         if (parent is null)
-        {
             _root = new Node<int>(value);
-            return;
-        }
-
-        if (parent.Data < value)
+        else if (value < parent.Data)
             parent.Left = new Node<int>(value);
         else
             parent.Right = new Node<int>(value);

@@ -8,7 +8,7 @@ public class SearchTests
     public void SearchValue_ShouldContainInTree()
     {
         // Arrange
-        var random = new Random(77);
+        var random = new Random();
         var values = Enumerable.Range(0, 100).OrderBy(_ => random.Next()).ToList();
 
         var bst = new BinarySearchTree();
@@ -18,7 +18,7 @@ public class SearchTests
             bst.Insert(value);
 
         // Assert
-        var expected = values.FirstOrDefault(o => o.Equals(random.Next()));
+        var expected = values.First();
         var result = bst.Search(expected);
 
         Assert.Equal(expected, result);
