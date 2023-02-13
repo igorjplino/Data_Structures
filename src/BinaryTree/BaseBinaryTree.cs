@@ -36,6 +36,30 @@ public class BaseBinaryTree<T> : IEnumerable<T>
         yield return node.Data;
     }
 
+    public IEnumerable<T> LevelOrderTraversal(Node<T> node = null)
+    {
+        node ??= _root;
+
+        var queue = new Queue.Queue<Node<T>>();
+
+        queue.Push(node);
+
+        while (!queue.IsEmpty)
+        {
+            node = queue.Pop();
+
+            if (node.Left is not null)
+                queue.Push(node.Left);
+
+            if (node.Right is not null)
+                queue.Push(node.Right);
+            
+            yield return node.Data;
+        }
+
+        yield break;
+    }
+
     public IEnumerator<T> GetEnumerator()
     {
         return GetEnumerator();
