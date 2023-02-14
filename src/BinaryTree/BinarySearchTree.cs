@@ -42,5 +42,25 @@ public class BinarySearchTree : BaseBinaryTree<int>
         
         return Search(value, node.Right);
     }
+
+    public int Min(Node<int> node = null)
+    {
+        node ??= _root;
+
+        while (node.Left is not null)
+            node = node.Left;
+
+        return node.Data;
+    }
+
+    public int Max(Node<int> node = null)
+    {
+        node ??= _root;
+
+        while (node.Right is not null)
+            node = node.Right;
+
+        return node.Data;
+    }
 }
 
