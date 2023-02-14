@@ -1,6 +1,4 @@
-﻿using BinaryTree;
-
-namespace Test.BinaryTree.BinarySearchTreeTests;
+﻿namespace Test.BinaryTree.BinarySearchTreeTests;
 
 public class InsertTests
 {
@@ -8,20 +6,13 @@ public class InsertTests
     public void InsertedValues_ShouldContainInOrderTraversal()
     {
         // Arrange
-        var random = new Random(77);
-        var values = Enumerable.Range(0, 100).OrderBy(_ => random.Next()).ToList();
-
-        var bst = new BinarySearchTree();
+        var bst = BinarySearchTreeMocks.GetExamples();
 
         // Act
-        foreach (var value in values)
-            bst.Insert(value);
-
-        // Assert
-
         var result = bst.InOrderTraversal();
 
+        // Assert
         result.Should()
-            .Contain(values);
+            .Contain(BinarySearchTreeMocks.ExampleValues);
     }
 }

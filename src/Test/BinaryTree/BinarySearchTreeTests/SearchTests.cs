@@ -1,6 +1,4 @@
-﻿using BinaryTree;
-
-namespace Test.BinaryTree.BinarySearchTreeTests;
+﻿namespace Test.BinaryTree.BinarySearchTreeTests;
 
 public class SearchTests
 {
@@ -8,19 +6,13 @@ public class SearchTests
     public void SearchValue_ShouldContainInTree()
     {
         // Arrange
-        var random = new Random();
-        var values = Enumerable.Range(0, 100).OrderBy(_ => random.Next()).ToList();
-
-        var bst = new BinarySearchTree();
+        var bst = BinarySearchTreeMocks.GetExamples();
 
         // Act
-        foreach (var value in values)
-            bst.Insert(value);
-
-        // Assert
-        var expected = values.First();
+        var expected = BinarySearchTreeMocks.ExampleValues.First();
         var result = bst.Search(expected);
 
+        // Assert
         Assert.Equal(expected, result);
     }
 
@@ -28,19 +20,13 @@ public class SearchTests
     public void SearchNonExistingValue_ShouldReturnNull()
     {
         // Arrange
-        var random = new Random(77);
-        var values = Enumerable.Range(0, 100).OrderBy(_ => random.Next()).ToList();
-
-        var bst = new BinarySearchTree();
+        var bst = BinarySearchTreeMocks.GetExamples();
 
         // Act
-        foreach (var value in values)
-            bst.Insert(value);
-
-        // Assert
-        var nonExistingValue = values.Max() + 1;
+        var nonExistingValue = BinarySearchTreeMocks.ExampleValues.Max() + 1;
         var result = bst.Search(nonExistingValue);
 
+        // Assert
         Assert.Null(result);
     }
 }

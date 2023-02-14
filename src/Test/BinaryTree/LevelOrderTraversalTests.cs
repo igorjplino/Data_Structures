@@ -1,4 +1,5 @@
 ﻿using BinaryTree;
+using Test.BinaryTree.BinarySearchTreeTests;
 
 namespace Test.BinaryTree;
 
@@ -8,12 +9,7 @@ public class LevelOrderTraversalTests
     public void GivenValues_ShouldBeDisplayedInLevelOrder()
     {
         // Arrange
-        var items = new int[] { 61, 89, 66, 43, 51, 16, 55, 11, 79, 77, 82, 32 };
-
-        var bst = new BinarySearchTree();
-
-        foreach (var item in items)
-            bst.Insert(item);
+        var bst = BinarySearchTreeMocks.GetExamples();
 
         // Act
         var result = bst.LevelOrderTraversal();
