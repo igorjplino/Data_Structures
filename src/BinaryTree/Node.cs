@@ -2,7 +2,7 @@
 
 public class Node<T>
 {
-    public T Data { get; }
+    public T Data { get; private set; }
     public Node<T>? Left { get; set; }
     public Node<T>? Right { get; set; }
 
@@ -13,6 +13,13 @@ public class Node<T>
         Data = data;
         Left = default;
         Right = default;
+    }
+
+    public void NewData(T data)
+    {
+        ArgumentNullException.ThrowIfNull(data);
+
+        Data = data;
     }
 
     public override string ToString()
