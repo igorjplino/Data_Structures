@@ -43,7 +43,7 @@ public class BinarySearchTree : BaseBinaryTree<int>
         return Search(value, node.Right);
     }
 
-    public int Min(Node<int> node = null)
+    public int Min(Node<int>? node = null)
     {
         node ??= _root;
 
@@ -53,7 +53,7 @@ public class BinarySearchTree : BaseBinaryTree<int>
         return node.Data;
     }
 
-    public int Max(Node<int> node = null)
+    public int Max(Node<int>? node = null)
     {
         node ??= _root;
 
@@ -61,6 +61,37 @@ public class BinarySearchTree : BaseBinaryTree<int>
             node = node.Right;
 
         return node.Data;
+    }
+
+    public void Remove(int value) => Remove(value);
+
+    private Node<int>? Remove(int value, Node<int>? node = null)
+    {
+        node ??= _root;
+
+        if (node is null)
+            return node;
+
+        if (node.Data < value)
+            node.Left = Remove(value, node.Left);
+        else if (node.Data > value)
+            node.Right = Remove(value, node.Right);
+        else
+        {
+            if (node.Left is null)
+                return node.Right;
+
+            if (node.Right is null)
+                return node.Left;
+
+            var substitute = Min(node.Right);
+
+            node.NewData(substitute);
+
+            node.Right = Remove(substitute, node.Right);
+        }
+
+        return node;
     }
 }
 
